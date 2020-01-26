@@ -47,6 +47,7 @@ case $1 in
     echo '        # mkdir /bedrock-$ver' >> ~/servers/minecraft/setup.sh
     echo '        # download tar.gz and extract it TODO' >> ~/servers/minecraft/setup.sh
     echo '        # curl https://noahcou.github.io/fishcurl/bedrock/$2/ -o /vanilla-$ver/server.jar' >> ~/servers/minecraft/setup.sh
+    echo '    ;;' >> ~/servers/minecraft/setup.sh
     echo '' >> ~/servers/minecraft/setup.sh
     echo '    forge|f)' >> ~/servers/minecraft/setup.sh
     echo '        mkdir /forge-$ver' >> ~/servers/minecraft/setup.sh
@@ -85,6 +86,7 @@ case $1 in
     echo '    ;;' >> ~/servers/minecraft/setup.sh
     echo 'esac' >> ~/servers/minecraft/setup.sh
 
+
     ;;
 
     setupsteam|steam|s)
@@ -94,12 +96,13 @@ case $1 in
     sudo dpkg --add-architecture i386
     sudo apt-get update
     sudo apt-get install lib32gcc1 steamcmd
-    sudo ln -s /usr/games/steamcmd steamcmd
 
     echo "Creating Folders and Scripts . . ."
     # createsteam
     mkdir ~/servers
     mkdir ~/servers/steam
+    mkdir ~/servers/steam/steamcmd
+    sudo ln -s /usr/games/steamcmd ~/servers/steam/steamcmd/steamcmd
 
     # code from setupsteam.sh echoed into a script
     echo '#!/bin/sh' >> ~/servers/steam/setup.sh
@@ -165,7 +168,6 @@ case $1 in
     sudo dpkg --add-architecture i386
     sudo apt-get update
     sudo apt-get install lib32gcc1 steamcmd
-    sudo ln -s /usr/games/steamcmd steamcmd
 
     echo "Creating Folders and Scripts for MC . . ."
     # createmc
@@ -207,6 +209,7 @@ case $1 in
     echo '        # mkdir /bedrock-$ver' >> ~/servers/minecraft/setup.sh
     echo '        # download tar.gz and extract it TODO' >> ~/servers/minecraft/setup.sh
     echo '        # curl https://noahcou.github.io/fishcurl/bedrock/$2/ -o /vanilla-$ver/server.jar' >> ~/servers/minecraft/setup.sh
+    echo '    ;;' >> ~/servers/minecraft/setup.sh
     echo '' >> ~/servers/minecraft/setup.sh
     echo '    forge|f)' >> ~/servers/minecraft/setup.sh
     echo '        mkdir /forge-$ver' >> ~/servers/minecraft/setup.sh
@@ -245,10 +248,13 @@ case $1 in
     echo '    ;;' >> ~/servers/minecraft/setup.sh
     echo 'esac' >> ~/servers/minecraft/setup.sh
 
+
     echo "Creating Folders and Scripts for Steam . . ."
     # createsteam
     mkdir ~/servers
     mkdir ~/servers/steam
+    mkdir ~/servers/steam/steamcmd
+    sudo ln -s /usr/games/steamcmd ~/servers/steam/steamcmd/steamcmd
 
     # code from setupsteam.sh echoed into a script
     echo '#!/bin/sh' >> ~/servers/steam/setup.sh
