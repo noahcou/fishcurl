@@ -12,13 +12,8 @@ case $1 in
     mkdir ~/servers/
     mkdir ~/servers/minecraft
 
-    if [ -f ~/servers/minecraft/setup ]
-    then
-        rm ~/servers/minecraft/setup
-    fi
-
     # code from setupmc.sh echoed into a script
-    echo '#!/bin/sh' >> ~/servers/minecraft/setup
+    echo '#!/bin/sh' > ~/servers/minecraft/setup
     echo '' >> ~/servers/minecraft/setup
     echo 'ver=""' >> ~/servers/minecraft/setup
     echo '' >> ~/servers/minecraft/setup
@@ -83,7 +78,7 @@ case $1 in
     echo '        curl https://noahcou.github.io/fishcurl/vanilla/$2/server.jar -o vanilla-$ver/server.jar' >> ~/servers/minecraft/setup
     echo '        echo "java -Xmx4G -jar server.jar" >> vanilla-$ver/start' >> ~/servers/minecraft/setup
     echo '        chmod +x vanilla-$ver/start' >> ~/servers/minecraft/setup
-    echo '        echo "sudo screen -dmS vanilla-$ver ~/servers/minecraft/vanilla-$ver/start" >> vanilla-$ver/screen' >> ~/servers/minecraft/setup
+    echo '        echo "screen -dmS vanilla-$ver ~/servers/minecraft/vanilla-$ver/start" >> vanilla-$ver/screen' >> ~/servers/minecraft/setup
     echo '        chmod +x vanilla-$ver/screen' >> ~/servers/minecraft/setup
     echo '        echo "# EULA (https://account.mojang.com/documents/minecraft_eula)" >> vanilla-$ver/eula.txt' >> ~/servers/minecraft/setup
     echo '        echo "eula=true" >> vanilla-$ver/eula.txt' >> ~/servers/minecraft/setup
@@ -94,7 +89,7 @@ case $1 in
     echo '        curl https://papermc.io/api/v1/paper/$2/latest/download -o paper-$ver/server.jar' >> ~/servers/minecraft/setup
     echo '        echo "java -Xmx8G -jar server.jar" >> paper-$ver/start' >> ~/servers/minecraft/setup
     echo '        chmod +x paper-$ver/start' >> ~/servers/minecraft/setup
-    echo '        echo "sudo screen -dmS paper-$ver ~/servers/minecraft/paper-$ver/start" >> paper-$ver/screen' >> ~/servers/minecraft/setup
+    echo '        echo "screen -dmS paper-$ver ~/servers/minecraft/paper-$ver/start" >> paper-$ver/screen' >> ~/servers/minecraft/setup
     echo '        chmod +x paper-$ver/screen' >> ~/servers/minecraft/setup
     echo '        echo "# EULA (https://account.mojang.com/documents/minecraft_eula)" >> paper-$ver/eula.txt' >> ~/servers/minecraft/setup
     echo '        echo "eula=true" >> paper-$ver/eula.txt' >> ~/servers/minecraft/setup
@@ -107,7 +102,7 @@ case $1 in
     echo '        rm server.zip' >> ~/servers/minecraft/setup
     echo '        echo "LD_LIBRARY_PATH=. ./bedrock_server" >> bedrock-$ver/start' >> ~/servers/minecraft/setup
     echo '        chmod +x bedrock-$ver/start' >> ~/servers/minecraft/setup
-    echo '        echo "sudo screen -dmS bedrock-$ver ~/servers/minecraft/bedrock-$ver/start" >> bedrock-$ver/screen' >> ~/servers/minecraft/setup
+    echo '        echo "screen -dmS bedrock-$ver ~/servers/minecraft/bedrock-$ver/start" >> bedrock-$ver/screen' >> ~/servers/minecraft/setup
     echo '        chmod +x bedrock-$ver/screen' >> ~/servers/minecraft/setup
     echo '    ;;' >> ~/servers/minecraft/setup
     echo '' >> ~/servers/minecraft/setup
@@ -122,7 +117,7 @@ case $1 in
     echo '        cd ..' >> ~/servers/minecraft/setup
     echo '        echo "java -Xmx10G -jar server.jar" >> forge-$ver/start' >> ~/servers/minecraft/setup
     echo '        chmod +x forge-$ver/start' >> ~/servers/minecraft/setup
-    echo '        echo "sudo screen -dmS forge-$ver ~/servers/minecraft/forge-$ver/start" >> forge-$ver/screen' >> ~/servers/minecraft/setup
+    echo '        echo "screen -dmS forge-$ver ~/servers/minecraft/forge-$ver/start" >> forge-$ver/screen' >> ~/servers/minecraft/setup
     echo '        chmod +x forge-$ver/screen' >> ~/servers/minecraft/setup
     echo '        echo "# EULA (https://account.mojang.com/documents/minecraft_eula)" >> forge-$ver/eula.txt' >> ~/servers/minecraft/setup
     echo '        echo "eula=true" >> forge-$ver/eula.txt' >> ~/servers/minecraft/setup
@@ -140,7 +135,7 @@ case $1 in
     echo '        cd ..' >> ~/servers/minecraft/setup
     echo '        echo "java -Xmx12G -jar server.jar" >> sponge-$ver/start' >> ~/servers/minecraft/setup
     echo '        chmod +x sponge-$ver/start' >> ~/servers/minecraft/setup
-    echo '        echo "sudo screen -dmS sponge-$ver ~/servers/minecraft/sponge-$ver/start" >> sponge-$ver/screen' >> ~/servers/minecraft/setup
+    echo '        echo "screen -dmS sponge-$ver ~/servers/minecraft/sponge-$ver/start" >> sponge-$ver/screen' >> ~/servers/minecraft/setup
     echo '        chmod +x sponge-$ver/screen' >> ~/servers/minecraft/setup
     echo '        echo "# EULA (https://account.mojang.com/documents/minecraft_eula)" >> sponge-$ver/eula.txt' >> ~/servers/minecraft/setup
     echo '        echo "eula=true" >> sponge-$ver/eula.txt' >> ~/servers/minecraft/setup
@@ -194,33 +189,18 @@ case $1 in
     mkdir ~/servers/steam/steamcmd
     sudo ln -s /usr/games/steamcmd ~/servers/steam/steamcmd/steamcmd
 
-    if [ -f ~/servers/steam/disableipv6 ]
-    then
-        rm ~/servers/steam/disableipv6
-    fi
-
-    echo '#!/bin/sh' >> ~/servers/steam/disableipv6
+    echo '#!/bin/sh' > ~/servers/steam/disableipv6
     echo 'sudo sysctl -w net.ipv6.conf.all.disable_ipv6=1' >> ~/servers/steam/disableipv6
     echo 'sudo sysctl -w net.ipv6.conf.default.disable_ipv6=1' >> ~/servers/steam/disableipv6
     chmod +x ~/servers/steam/disableipv6
 
-    if [ -f ~/servers/steam/enableipv6 ]
-    then
-        rm ~/servers/steam/enableipv6
-    fi
-
-    echo '#!/bin/sh' >> ~/servers/steam/enableipv6
+    echo '#!/bin/sh' > ~/servers/steam/enableipv6
     echo 'sudo sysctl -w net.ipv6.conf.all.disable_ipv6=0' >> ~/servers/steam/enableipv6
     echo 'sudo sysctl -w net.ipv6.conf.default.disable_ipv6=0' >> ~/servers/steam/enableipv6
     chmod +x ~/servers/steam/enableipv6
 
-    if [ -f ~/servers/steam/setup ]
-    then
-        rm ~/servers/steam/setup
-    fi
-
     # code from setupsteam.sh echoed into a script
-    echo '#!/bin/sh' >> ~/servers/steam/setup
+    echo '#!/bin/sh' > ~/servers/steam/setup
     echo '' >> ~/servers/steam/setup
     echo '' >> ~/servers/steam/setup
     echo '' >> ~/servers/steam/setup
@@ -251,7 +231,7 @@ case $1 in
     echo '            echo "Setting up $2 . . ."' >> ~/servers/steam/setup
     echo '            mkdir $2' >> ~/servers/steam/setup
     echo '            cd $2' >> ~/servers/steam/setup
-    echo '            echo "sudo ~/servers/steam/disableipv6" >> update' >> ~/servers/steam/setup
+    echo '            echo "~/servers/steam/disableipv6" >> update' >> ~/servers/steam/setup
     echo '            echo "steamcmd +login $3 +force_install_dir ~/servers/steam/$2 +app_update $1 validate +quit" >> update' >> ~/servers/steam/setup
     echo '            chmod +x update' >> ~/servers/steam/setup
     echo '            echo "Downloading and installing $2"' >> ~/servers/steam/setup
@@ -260,14 +240,14 @@ case $1 in
     echo '' >> ~/servers/steam/setup
     echo '            echo "Due to the complexity of steam servers a screen bash script will be created for you but you will be required to configure the APP yourself"' >> ~/servers/steam/setup
     echo '            echo "I personally use a start bash script that is then executed by the screen bash script for convenience!"' >> ~/servers/steam/setup
-    echo '            echo "sudo screen -dmS $2 ~/servers/steam/$2/start" >> screen' >> ~/servers/steam/setup
+    echo '            echo "screen -dmS $2 ~/servers/steam/$2/start" >> screen' >> ~/servers/steam/setup
     echo '            chmod +x screen' >> ~/servers/steam/setup
     echo '            cd ..' >> ~/servers/steam/setup
     echo '        else' >> ~/servers/steam/setup
     echo '            echo "Setting up $2 . . ."' >> ~/servers/steam/setup
     echo '            mkdir $2' >> ~/servers/steam/setup
     echo '            cd $2' >> ~/servers/steam/setup
-    echo '            echo "sudo ~/servers/steam/disableipv6" >> update' >> ~/servers/steam/setup
+    echo '            echo "~/servers/steam/disableipv6" >> update' >> ~/servers/steam/setup
     echo '            echo "steamcmd +login anonymous +force_install_dir ~/servers/steam/$2 +app_update $1 validate +quit" >> update' >> ~/servers/steam/setup
     echo '            chmod +x update' >> ~/servers/steam/setup
     echo '            echo "Downloading and installing $2"' >> ~/servers/steam/setup
@@ -276,7 +256,7 @@ case $1 in
     echo '' >> ~/servers/steam/setup
     echo '            echo "Due to the complexity of steam servers a screen bash script will be created for you but you will be required to configure the APP yourself"' >> ~/servers/steam/setup
     echo '            echo "I personally use a start bash script that is then executed by the screen bash script for convenience!"' >> ~/servers/steam/setup
-    echo '            echo "sudo screen -dmS $2 ~/servers/steam/$2/start" >> screen' >> ~/servers/steam/setup
+    echo '            echo "screen -dmS $2 ~/servers/steam/$2/start" >> screen' >> ~/servers/steam/setup
     echo '            chmod +x screen' >> ~/servers/steam/setup
     echo '            cd ..' >> ~/servers/steam/setup
     echo '        fi' >> ~/servers/steam/setup
@@ -306,13 +286,8 @@ case $1 in
     mkdir ~/servers/
     mkdir ~/servers/minecraft
 
-    if [ -f ~/servers/minecraft/setup ]
-    then
-        rm ~/servers/minecraft/setup
-    fi
-
     # code from setupmc.sh echoed into a script
-    echo '#!/bin/sh' >> ~/servers/minecraft/setup
+    echo '#!/bin/sh' > ~/servers/minecraft/setup
     echo '' >> ~/servers/minecraft/setup
     echo 'ver=""' >> ~/servers/minecraft/setup
     echo '' >> ~/servers/minecraft/setup
@@ -377,7 +352,7 @@ case $1 in
     echo '        curl https://noahcou.github.io/fishcurl/vanilla/$2/server.jar -o vanilla-$ver/server.jar' >> ~/servers/minecraft/setup
     echo '        echo "java -Xmx4G -jar server.jar" >> vanilla-$ver/start' >> ~/servers/minecraft/setup
     echo '        chmod +x vanilla-$ver/start' >> ~/servers/minecraft/setup
-    echo '        echo "sudo screen -dmS vanilla-$ver ~/servers/minecraft/vanilla-$ver/start" >> vanilla-$ver/screen' >> ~/servers/minecraft/setup
+    echo '        echo "screen -dmS vanilla-$ver ~/servers/minecraft/vanilla-$ver/start" >> vanilla-$ver/screen' >> ~/servers/minecraft/setup
     echo '        chmod +x vanilla-$ver/screen' >> ~/servers/minecraft/setup
     echo '        echo "# EULA (https://account.mojang.com/documents/minecraft_eula)" >> vanilla-$ver/eula.txt' >> ~/servers/minecraft/setup
     echo '        echo "eula=true" >> vanilla-$ver/eula.txt' >> ~/servers/minecraft/setup
@@ -388,7 +363,7 @@ case $1 in
     echo '        curl https://papermc.io/api/v1/paper/$2/latest/download -o paper-$ver/server.jar' >> ~/servers/minecraft/setup
     echo '        echo "java -Xmx8G -jar server.jar" >> paper-$ver/start' >> ~/servers/minecraft/setup
     echo '        chmod +x paper-$ver/start' >> ~/servers/minecraft/setup
-    echo '        echo "sudo screen -dmS paper-$ver ~/servers/minecraft/paper-$ver/start" >> paper-$ver/screen' >> ~/servers/minecraft/setup
+    echo '        echo "screen -dmS paper-$ver ~/servers/minecraft/paper-$ver/start" >> paper-$ver/screen' >> ~/servers/minecraft/setup
     echo '        chmod +x paper-$ver/screen' >> ~/servers/minecraft/setup
     echo '        echo "# EULA (https://account.mojang.com/documents/minecraft_eula)" >> paper-$ver/eula.txt' >> ~/servers/minecraft/setup
     echo '        echo "eula=true" >> paper-$ver/eula.txt' >> ~/servers/minecraft/setup
@@ -401,7 +376,7 @@ case $1 in
     echo '        rm server.zip' >> ~/servers/minecraft/setup
     echo '        echo "LD_LIBRARY_PATH=. ./bedrock_server" >> bedrock-$ver/start' >> ~/servers/minecraft/setup
     echo '        chmod +x bedrock-$ver/start' >> ~/servers/minecraft/setup
-    echo '        echo "sudo screen -dmS bedrock-$ver ~/servers/minecraft/bedrock-$ver/start" >> bedrock-$ver/screen' >> ~/servers/minecraft/setup
+    echo '        echo "screen -dmS bedrock-$ver ~/servers/minecraft/bedrock-$ver/start" >> bedrock-$ver/screen' >> ~/servers/minecraft/setup
     echo '        chmod +x bedrock-$ver/screen' >> ~/servers/minecraft/setup
     echo '    ;;' >> ~/servers/minecraft/setup
     echo '' >> ~/servers/minecraft/setup
@@ -416,7 +391,7 @@ case $1 in
     echo '        cd ..' >> ~/servers/minecraft/setup
     echo '        echo "java -Xmx10G -jar server.jar" >> forge-$ver/start' >> ~/servers/minecraft/setup
     echo '        chmod +x forge-$ver/start' >> ~/servers/minecraft/setup
-    echo '        echo "sudo screen -dmS forge-$ver ~/servers/minecraft/forge-$ver/start" >> forge-$ver/screen' >> ~/servers/minecraft/setup
+    echo '        echo "screen -dmS forge-$ver ~/servers/minecraft/forge-$ver/start" >> forge-$ver/screen' >> ~/servers/minecraft/setup
     echo '        chmod +x forge-$ver/screen' >> ~/servers/minecraft/setup
     echo '        echo "# EULA (https://account.mojang.com/documents/minecraft_eula)" >> forge-$ver/eula.txt' >> ~/servers/minecraft/setup
     echo '        echo "eula=true" >> forge-$ver/eula.txt' >> ~/servers/minecraft/setup
@@ -434,7 +409,7 @@ case $1 in
     echo '        cd ..' >> ~/servers/minecraft/setup
     echo '        echo "java -Xmx12G -jar server.jar" >> sponge-$ver/start' >> ~/servers/minecraft/setup
     echo '        chmod +x sponge-$ver/start' >> ~/servers/minecraft/setup
-    echo '        echo "sudo screen -dmS sponge-$ver ~/servers/minecraft/sponge-$ver/start" >> sponge-$ver/screen' >> ~/servers/minecraft/setup
+    echo '        echo "screen -dmS sponge-$ver ~/servers/minecraft/sponge-$ver/start" >> sponge-$ver/screen' >> ~/servers/minecraft/setup
     echo '        chmod +x sponge-$ver/screen' >> ~/servers/minecraft/setup
     echo '        echo "# EULA (https://account.mojang.com/documents/minecraft_eula)" >> sponge-$ver/eula.txt' >> ~/servers/minecraft/setup
     echo '        echo "eula=true" >> sponge-$ver/eula.txt' >> ~/servers/minecraft/setup
@@ -479,33 +454,18 @@ case $1 in
     mkdir ~/servers/steam/steamcmd
     sudo ln -s /usr/games/steamcmd ~/servers/steam/steamcmd/steamcmd
 
-    if [ -f ~/servers/steam/disableipv6 ]
-    then
-        rm ~/servers/steam/disableipv6
-    fi
-
-    echo '#!/bin/sh' >> ~/servers/steam/disableipv6
+    echo '#!/bin/sh' > ~/servers/steam/disableipv6
     echo 'sudo sysctl -w net.ipv6.conf.all.disable_ipv6=1' >> ~/servers/steam/disableipv6
     echo 'sudo sysctl -w net.ipv6.conf.default.disable_ipv6=1' >> ~/servers/steam/disableipv6
     chmod +x ~/servers/steam/disableipv6
 
-    if [ -f ~/servers/steam/enableipv6 ]
-    then
-        rm ~/servers/steam/enableipv6
-    fi
-
-    echo '#!/bin/sh' >> ~/servers/steam/enableipv6
+    echo '#!/bin/sh' > ~/servers/steam/enableipv6
     echo 'sudo sysctl -w net.ipv6.conf.all.disable_ipv6=0' >> ~/servers/steam/enableipv6
     echo 'sudo sysctl -w net.ipv6.conf.default.disable_ipv6=0' >> ~/servers/steam/enableipv6
     chmod +x ~/servers/steam/enableipv6
 
-    if [ -f ~/servers/steam/setup ]
-    then
-        rm ~/servers/steam/setup
-    fi
-
     # code from setupsteam.sh echoed into a script
-    echo '#!/bin/sh' >> ~/servers/steam/setup
+    echo '#!/bin/sh' > ~/servers/steam/setup
     echo '' >> ~/servers/steam/setup
     echo '' >> ~/servers/steam/setup
     echo '' >> ~/servers/steam/setup
@@ -536,7 +496,7 @@ case $1 in
     echo '            echo "Setting up $2 . . ."' >> ~/servers/steam/setup
     echo '            mkdir $2' >> ~/servers/steam/setup
     echo '            cd $2' >> ~/servers/steam/setup
-    echo '            echo "sudo ~/servers/steam/disableipv6" >> update' >> ~/servers/steam/setup
+    echo '            echo "~/servers/steam/disableipv6" >> update' >> ~/servers/steam/setup
     echo '            echo "steamcmd +login $3 +force_install_dir ~/servers/steam/$2 +app_update $1 validate +quit" >> update' >> ~/servers/steam/setup
     echo '            chmod +x update' >> ~/servers/steam/setup
     echo '            echo "Downloading and installing $2"' >> ~/servers/steam/setup
@@ -545,14 +505,14 @@ case $1 in
     echo '' >> ~/servers/steam/setup
     echo '            echo "Due to the complexity of steam servers a screen bash script will be created for you but you will be required to configure the APP yourself"' >> ~/servers/steam/setup
     echo '            echo "I personally use a start bash script that is then executed by the screen bash script for convenience!"' >> ~/servers/steam/setup
-    echo '            echo "sudo screen -dmS $2 ~/servers/steam/$2/start" >> screen' >> ~/servers/steam/setup
+    echo '            echo "screen -dmS $2 ~/servers/steam/$2/start" >> screen' >> ~/servers/steam/setup
     echo '            chmod +x screen' >> ~/servers/steam/setup
     echo '            cd ..' >> ~/servers/steam/setup
     echo '        else' >> ~/servers/steam/setup
     echo '            echo "Setting up $2 . . ."' >> ~/servers/steam/setup
     echo '            mkdir $2' >> ~/servers/steam/setup
     echo '            cd $2' >> ~/servers/steam/setup
-    echo '            echo "sudo ~/servers/steam/disableipv6" >> update' >> ~/servers/steam/setup
+    echo '            echo "~/servers/steam/disableipv6" >> update' >> ~/servers/steam/setup
     echo '            echo "steamcmd +login anonymous +force_install_dir ~/servers/steam/$2 +app_update $1 validate +quit" >> update' >> ~/servers/steam/setup
     echo '            chmod +x update' >> ~/servers/steam/setup
     echo '            echo "Downloading and installing $2"' >> ~/servers/steam/setup
@@ -561,7 +521,7 @@ case $1 in
     echo '' >> ~/servers/steam/setup
     echo '            echo "Due to the complexity of steam servers a screen bash script will be created for you but you will be required to configure the APP yourself"' >> ~/servers/steam/setup
     echo '            echo "I personally use a start bash script that is then executed by the screen bash script for convenience!"' >> ~/servers/steam/setup
-    echo '            echo "sudo screen -dmS $2 ~/servers/steam/$2/start" >> screen' >> ~/servers/steam/setup
+    echo '            echo "screen -dmS $2 ~/servers/steam/$2/start" >> screen' >> ~/servers/steam/setup
     echo '            chmod +x screen' >> ~/servers/steam/setup
     echo '            cd ..' >> ~/servers/steam/setup
     echo '        fi' >> ~/servers/steam/setup
